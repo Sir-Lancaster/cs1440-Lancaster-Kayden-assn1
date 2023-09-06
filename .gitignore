@@ -1,0 +1,23 @@
+# Show Your Work plugin log files
+showyourwork
+
+# Common IDE configuration files
+.idea
+.vscode
+
+# Common virtual environment patterns
+.venv
+venv
+
+# Good ol' MacOS
+.DS_Store
+
+# Python cache files
+__pycache__
+*.pyc
+
+# Other files to ignore for good practice
+*.csv
+*.zip
+*.bak
+*.png
