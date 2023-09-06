@@ -15,6 +15,8 @@
 
 The flaw in this program is that the optimal AI player can lose.  It is your job to find out why.  You will uncover the causes as you study the code.  If you think anything else which looks wrong, **just leave it alone**.  I will make a public announcement if another serious issue is discovered.  Apart from the AI bug, I am confident this program works as intended.
 
+This assignment is broken into the six phases that professionals follow when working on software projects.  Beneath each heading is a suggestion of how much time you should spend that phase.  In future assignments you will write a *Software Development Plan* (SDP) in which you describe your activities in each phase.  In this assignment I want you to study the plans written by the [AI team](./AI_Team_Plan.md) and the [Game Engine](./Engine_Team_Plan.md) so can learn what yours should look like.
+
 
 ### Phase 0: Requirements Analysis
 *(20% of your effort)*
