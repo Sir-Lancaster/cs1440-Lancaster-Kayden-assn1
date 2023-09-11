@@ -1,3 +1,5 @@
+from time import sleep
+
 def place(board, position, player): # Module Engine
     """
     Accepts: a game board (tuple), position (integer), and a player's identity ("X" or "O")
