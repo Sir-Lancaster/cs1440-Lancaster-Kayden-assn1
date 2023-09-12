@@ -1,5 +1,12 @@
 from time import sleep
 
+# Import Statements:
+import ai
+import interface
+import util
+
+
+
 def place(board, position, player): # Module Engine
     """
     Accepts: a game board (tuple), position (integer), and a player's identity ("X" or "O")
@@ -82,24 +89,24 @@ def human_turn(board, letter): # Moduel Engine
            True to keep playing
     """
     while True:
-        choice = get_human_move(board, letter)
+        choice = interface.get_human_move(board, letter)
         if choice is False:
             return False
         new_board = place(board, choice, letter)
         if not new_board:
             if letter == 'X':
-                print(red("You can't play at {}!".format(choice)))
+                print(util.red("You can't play at {}!".format(choice)))
             else:
-                print(cyan("You can't play at {}!".format(choice)))
+                print(util.cyan("You can't play at {}!".format(choice)))
         else:
             return new_board
 
 
 def cpu_turn(board, letter, strategy, verbose=True): # Module Engine
     if letter == "X":
-        color = red
+        color = util.red
     else:
-        color = cyan
+        color = util.cyan
     if verbose:
         print(color("CPU {} is taking its turn...".format(letter)), end=' ', flush=True)
     sleep(CPU_DELAY)
@@ -171,13 +178,13 @@ def keep_playing(board): # Module Engine
         return False
     who = winner(board)
     if who == "X":
-        print(red("\n{} is the winner!\n".format(who)))
+        print(util.red("\n{} is the winner!\n".format(who)))
         return False
     elif who == "O":
-        print(cyan("\n{} is the winner!\n".format(who)))
+        print(util.cyan("\n{} is the winner!\n".format(who)))
         return False
     elif full(board):
-        print(green("\nStalemate.\n"))
+        print(util.green("\nStalemate.\n"))
         return False
     else:
         return board
@@ -185,34 +192,34 @@ def keep_playing(board): # Module Engine
 
 def cpu_vs_cpu(strategy_x, strategy_o): # Module Engine
     """Game mode 0: run the game between two CPU opponents"""
-    board = make_board()
+    board = interface.make_board()
     while True:
-        show(board)
+        interface.show(board)
         board = cpu_turn(board, 'X', strategy_x)
         if not keep_playing(board):
             break
-        show(board)
+        interface.show(board)
         board = cpu_turn(board, 'O', strategy_o)
         if not keep_playing(board):
             break
-    show(board)
+    interface.show(board)
 
 
 def cpu_vs_human(cpu_strategy): # Module Engine
-    board = make_board()
+    board = interface.make_board()
     while True:
-        show(board)
+        interface.show(board)
         board = cpu_turn(board, 'X', cpu_strategy)
         if not keep_playing(board):
             break
         board = human_turn(board, 'O')
         if not keep_playing(board):
             break
-    show(board)
+    interface.show(board)
 
 
 def human_vs_human(): # Module Engine
-    board = make_board()
+    board = interface.make_board()
     while True:
         board = human_turn(board, 'X')
         if not keep_playing(board):
@@ -220,56 +227,56 @@ def human_vs_human(): # Module Engine
         board = human_turn(board, 'O')
         if not keep_playing(board):
             break
-    show(board)
+    interface.show(board)
 
 
 def human_vs_cpu(cpu_strategy): # Module Engine
-    board = make_board()
+    board = interface.make_board()
     while True:
         board = human_turn(board, 'X')
         if not keep_playing(board):
             break
-        show(board)
+        interface.show(board)
         board = cpu_turn(board, 'O', cpu_strategy)
         if not keep_playing(board):
             break
-    show(board)
+    interface.show(board)
 
 
 def game(strategy_x, strategy_o): # Module Engine 
     global CPU_DELAY
-    clear()
-    print(green("GREETINGS PROFESSOR FALKEN\n"))
+    util.clear()
+    print(util.green("GREETINGS PROFESSOR FALKEN\n"))
     sleep(CPU_DELAY)
-    print(green("SHALL WE PLAY A GAME?\n"))
+    print(util.green("SHALL WE PLAY A GAME?\n"))
     sleep(CPU_DELAY * 2)
     orig_delay = CPU_DELAY
-    clear()
+    util.clear()
     for _ in range(40):
-        board = make_board()
-        clear()
+        board = interface.make_board()
+        util.clear()
         while True:
             if CPU_DELAY > 0.025:
                 CPU_DELAY *= 0.95
-            home()
-            show(board)
+            util.home()
+            interface.show(board)
             board = cpu_turn(board, 'X', strategy_x, verbose=False)
             if not keep_playing(board):
                 break
-            home()
-            show(board)
+            util.home()
+            interface.show(board)
             board = cpu_turn(board, 'O', strategy_o, verbose=False)
             if not keep_playing(board):
                 break
-        clear()
-        show(board)
+        util.clear()
+        interface.show(board)
         keep_playing(board)
         sleep(CPU_DELAY)
     CPU_DELAY = orig_delay
     sleep(CPU_DELAY)
-    print(green("A STRANGE GAME.\n"))
+    print(util.green("A STRANGE GAME.\n"))
     sleep(CPU_DELAY * 2)
-    print(green("THE ONLY WINNING MOVE IS NOT TO PLAY.\n"))
+    print(util.green("THE ONLY WINNING MOVE IS NOT TO PLAY.\n"))
     sleep(CPU_DELAY * 2)
-    print(green("HOW ABOUT A NICE GAME OF CHESS?\n"))
+    print(util.green("HOW ABOUT A NICE GAME OF CHESS?\n"))
     sleep(CPU_DELAY * 5)

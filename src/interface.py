@@ -1,14 +1,18 @@
+# Import Statements:
+import util
+
+
 def logo(): # Module Interface
     """Display the game's colorful logo"""
     print()
-    print(red('888888888               '), white('888888888                '), cyan('888888888                 '))
-    print(red('"8888888" ooooo  ooooo  '), white('"8888888" ooo     ooooo  '), cyan('"8888888"  ooo    ooooo   '))
-    print(red('   888     888  88   8  '), white('   888    888    88   8  '), cyan('   888   88   88  8       '))
-    print(red('   888     888  88      '), white('   888   8ooo8   88      '), cyan('   888   88   88  8ooooo  '))
-    print(red('   888     888  88    88'), white('   888  888  888 88    88'), cyan('   888   88o  88 o88      '))
-    print(red('   888    88888  888888"'), white('   888  888  888  888888"'), cyan('   888   "888888 888888888'))
-    print("                                                            ", "by ", yellow("DuckieCorp"), "(tm)", sep='')
-    print(green("\nWOULD YOU LIKE TO PLAY A GAME?\n"))
+    print(util.red('888888888               '), util.white('888888888                '), util.cyan('888888888                 '))
+    print(util.red('"8888888" ooooo  ooooo  '), util.white('"8888888" ooo     ooooo  '), util.cyan('"8888888"  ooo    ooooo   '))
+    print(util.red('   888     888  88   8  '), util.white('   888    888    88   8  '), util.cyan('   888   88   88  8       '))
+    print(util.red('   888     888  88      '), util.white('   888   8ooo8   88      '), util.cyan('   888   88   88  8ooooo  '))
+    print(util.red('   888     888  88    88'), util.white('   888  888  888 88    88'), util.cyan('   888   88o  88 o88      '))
+    print(util.red('   888    88888  888888"'), util.white('   888  888  888  888888"'), util.cyan('   888   "888888 888888888'))
+    print("                                                            ", "by ", util.yellow("DuckieCorp"), "(tm)", sep='')
+    print(util.green("\nWOULD YOU LIKE TO PLAY A GAME?\n"))
 
 
 def show(board): # Module Interface
@@ -19,9 +23,9 @@ def show(board): # Module Interface
     """
     if board:
         print(" {} | {} | {}\n---+---+---\n {} | {} | {}\n---+---+---\n {} | {} | {}\n".format(
-            color(board[0][0]), color(board[0][1]), color(board[0][2]),
-            color(board[1][0]), color(board[1][1]), color(board[1][2]),
-            color(board[2][0]), color(board[2][1]), color(board[2][2])))
+            util.color(board[0][0]), util.color(board[0][1]), util.color(board[0][2]),
+            util.color(board[1][0]), util.color(board[1][1]), util.color(board[1][2]),
+            util.color(board[2][0]), util.color(board[2][1]), util.color(board[2][2])))
 
 
 def get_human_move(board, letter): # Module Interface
@@ -37,7 +41,7 @@ def get_human_move(board, letter): # Module Interface
     """
     while True:
         show(board)
-        choice = input("Place your '{}' (or 'Q' to quit)> ".format(color(letter)))
+        choice = input("Place your '{}' (or 'Q' to quit)> ".format(util.color(letter)))
         if not choice.isdigit():
             if choice.lower().startswith('q'):
                 return False
@@ -53,10 +57,10 @@ def get_human_move(board, letter): # Module Interface
 
 def player_select(): # Module Interface 
     while True:
-        print("0)", red("X"), green("CPU  "), "vs.", cyan("O"), green("CPU"))
-        print("1)", red("X"), white("Human"), "vs.", cyan("O"), green("CPU"))
-        print("2)", red("X"), green("CPU  "), "vs.", cyan("O"), white("Human"))
-        print("3)", red("X"), white("Human"), "vs.", cyan("O"), white("Human"))
+        print("0)", util.red("X"), util.green("CPU  "), "vs.", util.cyan("O"), util.green("CPU"))
+        print("1)", util.red("X"), util.white("Human"), "vs.", util.cyan("O"), util.green("CPU"))
+        print("2)", util.red("X"), util.green("CPU  "), "vs.", util.cyan("O"), util.white("Human"))
+        print("3)", util.red("X"), util.white("Human"), "vs.", util.cyan("O"), util.white("Human"))
         p = input("Choose game mode [0-3] or Q to quit > ")
         if p == "0" or p == "1" or p == "2" or p == "3":
             return int(p)
