@@ -5,7 +5,7 @@ import ai
 import interface
 import util
 
-
+CPU_DELAY = 0.75
 
 def place(board, position, player): # Module Engine
     """

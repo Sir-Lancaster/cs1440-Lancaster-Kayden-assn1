@@ -4606,6 +4606,8 @@ MODEL = (
         (1, 2, 'O', 4, 5, 6, 7, 'X', 9)
     )
 )
+
+import engine
 def strategy_oracle(b):
     """
     CPU picks the optimal move by consulting a ML-trained model.  Technically
@@ -4630,12 +4632,13 @@ def strategy_oracle(b):
     function.
     """
     if "X" not in b:
-        return random.choice(open_cells(b))
-    for i in range(len(MODEL)):
-        for p in b:
-            if type(p) is int:
-                for j in range(len(MODEL[i])):
-                    if b == MODEL[i][j]:
-                        return i
+        return random.choice(engine.open_cells(b))
+    else:
+        for i in range(len(MODEL)):
+            for p in b:
+                if type(p) is int:
+                    for j in range(len(MODEL[i])):
+                        if b == MODEL[i][j]:
+                            return i
     print("If you see this message, the Oracle does not recognize the current board")
     return False

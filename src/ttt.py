@@ -38,7 +38,7 @@ import interface
 
 
 
-CPU_DELAY = 0.75
+
 
 
 
