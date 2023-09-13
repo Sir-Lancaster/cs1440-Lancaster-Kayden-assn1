@@ -20,17 +20,19 @@ def place(board, position, player): # Module Engine
         return False
 
     # convert position into (row, col) coordinates
-    row, col = pos_to_rowcol(position)
-
-    if board[row][col] != 'X' and board[row][col] != 'O':
+    if board[position - 1] != 'X' and board[position - 1] != 'O':
         # construct a brand new board
         new = []
         for r in board:
-            new.append(list(r))
-        new[row][col] = player
+            new.append(r)
+        if new[position-1] == 'X' and new[position- 1] == 'O':
+            return False
+        else:
+            new[position- 1] = player
+        print(new)
         # Always maintain the board as a tuple to guarantee that it
         # can never be accidentally modified
-        return tuple([tuple(new[0]), tuple(new[1]), tuple(new[2])])
+        return tuple([new[0], new[1], new[2], new[3], new[4], new[5], new[6], new[7], new[8]])
     else:
         return False
 
@@ -54,34 +56,36 @@ def horizontal_winner(board): # Module Engine
     Without it, this function could only return 'True' or 'False', merely
     indicating that SOMEBODY won the game instead of stating who the winner is.
     """
-    return (board[0][0] == board[0][1] == board[0][2] and board[0][2]) \
-        or (board[1][0] == board[1][1] == board[1][2] and board[1][2]) \
-        or (board[2][0] == board[2][1] == board[2][2] and board[2][2])
+    return (board[0] == board[1] == board[2] and board[2]) \
+        or (board[3] == board[4] == board[5] and board[5]) \
+        or (board[6] == board[7] == board[8] and board[8])
 
 
 def vertical_winner(board): # Module Engine
     """
     Determines which player has won a game with a vertical triple
     """
-    return (board[0][0] == board[1][0] == board[2][0] and board[2][0]) \
-        or (board[0][1] == board[1][1] == board[2][1] and board[2][1]) \
-        or (board[0][2] == board[1][2] == board[2][2] and board[2][2])
+    return (board[0] == board[3] == board[6] and board[0]) \
+        or (board[1] == board[4] == board[7] and board[1]) \
+        or (board[2] == board[5] == board[8] and board[2])
 
 
 def diagonal_winner(board): # Module Engine
     """
     Determines which player has won a game with a diagonal triple
     """
-    return (board[0][0] == board[1][1] == board[2][2] and board[2][2]) \
-        or (board[2][0] == board[1][1] == board[0][2] and board[0][2])
+    return (board[0] == board[4] == board[8] and board[8]) \
+        or (board[6] == board[4] == board[2] and board[2])
 
 
 def winner(board): # Module Engine
     """
     Returns the winner of the game (if any), or False when there is no winner
     """
-    return horizontal_winner(board) or vertical_winner(board) or diagonal_winner(board)
-
+    if horizontal_winner(board) == True or vertical_winner(board) == True or diagonal_winner(board) == True:
+        return horizontal_winner(board) or vertical_winner(board) or diagonal_winner(board)
+    else:
+        return False
  
 def human_turn(board, letter): # Moduel Engine
     """
@@ -113,7 +117,7 @@ def cpu_turn(board, letter, strategy, verbose=True): # Module Engine
     choice = strategy(board)
     if verbose:
         print(color("playing on {}\n".format(choice)))
-    return place(board, choice, letter)
+    return place(board, choice + 1, letter)
 
 
 def pos_to_rowcol(position): # Module Engine
@@ -142,15 +146,13 @@ def rowcol_to_pos(rowcol): # Module Engine
     return pos + 1
 
 
-def open_cells(board): # module engine
+def open_cells(b):
     """ Returns a tuple of the unmarked cells in a Tic-Tac-Toe board """
-    openings = []
-    for row in range(len(board)):
-        for col in range(len(board[row])):
-            if board[row][col] != 'X' and board[row][col] != 'O':
-                # convert (row,col) into a number
-                openings.append(rowcol_to_pos(tuple([row, col])))
-    return tuple(openings)
+    cs = []
+    for p in b:
+        if type(p) is int:
+            cs.append(p)
+    return tuple(cs)
 
 
 def first_open_cell(board): # module engine

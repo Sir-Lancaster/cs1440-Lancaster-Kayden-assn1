@@ -23,9 +23,9 @@ def show(board): # Module Interface
     """
     if board:
         print(" {} | {} | {}\n---+---+---\n {} | {} | {}\n---+---+---\n {} | {} | {}\n".format(
-            util.color(board[0][0]), util.color(board[0][1]), util.color(board[0][2]),
-            util.color(board[1][0]), util.color(board[1][1]), util.color(board[1][2]),
-            util.color(board[2][0]), util.color(board[2][1]), util.color(board[2][2])))
+            util.color(board[0]), util.color(board[1]), util.color(board[2]),
+            util.color(board[3]), util.color(board[4]), util.color(board[5]),
+            util.color(board[6]), util.color(board[7]), util.color(board[8])))
 
 
 def get_human_move(board, letter): # Module Interface
@@ -76,6 +76,4 @@ def make_board(): # Module Interface
     """
     A board is a 3-tuple of 3-tuples, where each tuple is one row
     """
-    return tuple([tuple([1, 2, 3]),
-                  tuple([4, 5, 6]),
-                  tuple([7, 8, 9])])
+    return tuple([1, 2, 3, 4, 5, 6, 7, 8, 9])

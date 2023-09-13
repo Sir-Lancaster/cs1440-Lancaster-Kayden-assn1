@@ -28,22 +28,6 @@
 import random
 
 
-def open_cells(b):
-    """ Returns a tuple of the unmarked cells in a Tic-Tac-Toe board """
-    cs = []
-    for p in b:
-        if type(p) is int:
-            cs.append(p)
-    return tuple(cs)
-
-
-def first_open_cell(b):
-    """ Return the ID of the first unmarked cell in a Tic-Tac-Toe board """
-    cs = open_cells(b)
-    if cs != []:
-        return cs[0]
-    else:
-        return None
 
 
 def strategy_dumb(b):
@@ -53,7 +37,7 @@ def strategy_dumb(b):
     However, that should never happen.  In a "real" game at least one square is
     always open, and the return statement will ALWAYS be reached.
     """
-    return first_open_cell(b)
+    return engine.first_open_cell(b)
 
 
 def strategy_random(b):
@@ -63,7 +47,7 @@ def strategy_random(b):
     However, that should never happen.  In a "real" game at least one square is
     always open.
     """
-    return random.choice(open_cells(b))
+    return random.choice(engine.open_cells(b))
 
 
 MODEL = (
