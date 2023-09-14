@@ -112,7 +112,7 @@ def cpu_turn(board, letter, strategy, verbose=True): # Module Engine
     sleep(CPU_DELAY)
     choice = strategy(board)
     if verbose:
-        print(color("playing on {}\n".format(choice)))
+        print(color("playing on {}\n".format(choice + 1)))
     return place(board, choice + 1, letter)
 
 

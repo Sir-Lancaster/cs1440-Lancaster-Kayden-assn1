@@ -4616,7 +4616,7 @@ def strategy_oracle(b):
     function.
     """
     if "X" not in b:
-        return random.choice(engine.open_cells(b))
+        return random.choice(engine.open_cells(b))-1
     else:
         for i in range(len(MODEL)):
             for p in b:
