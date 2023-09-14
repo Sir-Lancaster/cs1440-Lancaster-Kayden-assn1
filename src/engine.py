@@ -29,7 +29,6 @@ def place(board, position, player): # Module Engine
             return False
         else:
             new[position- 1] = player
-        print(new)
         # Always maintain the board as a tuple to guarantee that it
         # can never be accidentally modified
         return tuple([new[0], new[1], new[2], new[3], new[4], new[5], new[6], new[7], new[8]])
@@ -82,10 +81,7 @@ def winner(board): # Module Engine
     """
     Returns the winner of the game (if any), or False when there is no winner
     """
-    if horizontal_winner(board) == True or vertical_winner(board) == True or diagonal_winner(board) == True:
-        return horizontal_winner(board) or vertical_winner(board) or diagonal_winner(board)
-    else:
-        return False
+    return horizontal_winner(board) or vertical_winner(board) or diagonal_winner(board)
  
 def human_turn(board, letter): # Moduel Engine
     """
