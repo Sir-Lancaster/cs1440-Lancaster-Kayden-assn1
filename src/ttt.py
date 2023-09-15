@@ -46,7 +46,7 @@ import interface
 
 
 
-if __name__ == '__main__':           # Module ttt.py 
+if __name__ == '__main__':
     while True:
         interface.logo()
         mode = interface.player_select()

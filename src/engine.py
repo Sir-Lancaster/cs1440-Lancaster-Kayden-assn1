@@ -1,13 +1,13 @@
 from time import sleep
 
-# Import Statements:
+# Module Import Statements:
 import ai
 import interface
 import util
 
 CPU_DELAY = 0.75
 
-def place(board, position, player): # Module Engine
+def place(board, position, player):
     """
     Accepts: a game board (tuple), position (integer), and a player's identity ("X" or "O")
     Return a copy of the board with that player's mark put into the requested
@@ -19,7 +19,7 @@ def place(board, position, player): # Module Engine
         # player requested an out-of-bounds position
         return False
 
-    # convert position into (row, col) coordinates
+        # Ensures that the choses space is not occupied
     if board[position - 1] != 'X' and board[position - 1] != 'O':
         # construct a brand new board
         new = []
@@ -36,10 +36,10 @@ def place(board, position, player): # Module Engine
         return False
 
 
-def horizontal_winner(board): # Module Engine
+def horizontal_winner(board):
     """
     Determines which player has won a game with a horizontal triple.
-    Input: a 2D game board.
+    Input: the game board.
     Return: 'X' or 'O' when there is a winner, or False when no player has 3 in
     a horizontal row
 
@@ -60,7 +60,7 @@ def horizontal_winner(board): # Module Engine
         or (board[6] == board[7] == board[8] and board[8])
 
 
-def vertical_winner(board): # Module Engine
+def vertical_winner(board): 
     """
     Determines which player has won a game with a vertical triple
     """
@@ -69,7 +69,7 @@ def vertical_winner(board): # Module Engine
         or (board[2] == board[5] == board[8] and board[2])
 
 
-def diagonal_winner(board): # Module Engine
+def diagonal_winner(board): 
     """
     Determines which player has won a game with a diagonal triple
     """
@@ -77,13 +77,13 @@ def diagonal_winner(board): # Module Engine
         or (board[6] == board[4] == board[2] and board[2])
 
 
-def winner(board): # Module Engine
+def winner(board): 
     """
     Returns the winner of the game (if any), or False when there is no winner
     """
     return horizontal_winner(board) or vertical_winner(board) or diagonal_winner(board)
  
-def human_turn(board, letter): # Moduel Engine
+def human_turn(board, letter): 
     """
     Return False if the game is over,
            True to keep playing
@@ -102,7 +102,7 @@ def human_turn(board, letter): # Moduel Engine
             return new_board
 
 
-def cpu_turn(board, letter, strategy, verbose=True): # Module Engine
+def cpu_turn(board, letter, strategy, verbose=True): 
     if letter == "X":
         color = util.red
     else:
@@ -116,30 +116,8 @@ def cpu_turn(board, letter, strategy, verbose=True): # Module Engine
     return place(board, choice + 1, letter)
 
 
-def pos_to_rowcol(position): # Module Engine
-    """
-    Given a TicTacToe board position (int),
-    Return a tuple(row, col)
-
-    Inverse of the function rowcol_to_pos()
-    """
-    cell = position - 1
-    row = cell // 3
-    col = cell % 3
-    return row, col
 
 
-def rowcol_to_pos(rowcol): # Module Engine
-    """
-    Given a row and column (as a tuple)
-    Return a TicTacToe board position (int)
-
-    Inverse of the function pos_to_rowcol()
-    """
-    row = rowcol[0]
-    col = rowcol[1]
-    pos = row * 3 + col
-    return pos + 1
 
 
 def open_cells(b):
@@ -151,7 +129,7 @@ def open_cells(b):
     return tuple(cs)
 
 
-def first_open_cell(board): # module engine
+def first_open_cell(board): 
     """ Return the ID of the first unmarked cell in a Tic-Tac-Toe board """
     cells = open_cells(board)
     if cells != []:
@@ -160,11 +138,11 @@ def first_open_cell(board): # module engine
         return None
 
 
-def full(board): # Module Engine
+def full(board): 
     return open_cells(board) == ()
 
 
-def keep_playing(board): # Module Engine
+def keep_playing(board): 
     """
     Accepts a board or False as input
            board: take another turn
@@ -188,7 +166,7 @@ def keep_playing(board): # Module Engine
         return board
 
 
-def cpu_vs_cpu(strategy_x, strategy_o): # Module Engine
+def cpu_vs_cpu(strategy_x, strategy_o): 
     """Game mode 0: run the game between two CPU opponents"""
     board = interface.make_board()
     while True:
@@ -203,7 +181,7 @@ def cpu_vs_cpu(strategy_x, strategy_o): # Module Engine
     interface.show(board)
 
 
-def cpu_vs_human(cpu_strategy): # Module Engine
+def cpu_vs_human(cpu_strategy):
     board = interface.make_board()
     while True:
         interface.show(board)
@@ -216,7 +194,7 @@ def cpu_vs_human(cpu_strategy): # Module Engine
     interface.show(board)
 
 
-def human_vs_human(): # Module Engine
+def human_vs_human(): 
     board = interface.make_board()
     while True:
         board = human_turn(board, 'X')
@@ -228,7 +206,7 @@ def human_vs_human(): # Module Engine
     interface.show(board)
 
 
-def human_vs_cpu(cpu_strategy): # Module Engine
+def human_vs_cpu(cpu_strategy):
     board = interface.make_board()
     while True:
         board = human_turn(board, 'X')
@@ -241,7 +219,7 @@ def human_vs_cpu(cpu_strategy): # Module Engine
     interface.show(board)
 
 
-def game(strategy_x, strategy_o): # Module Engine 
+def game(strategy_x, strategy_o):  
     global CPU_DELAY
     util.clear()
     print(util.green("GREETINGS PROFESSOR FALKEN\n"))

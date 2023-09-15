@@ -2,7 +2,7 @@
 import util
 
 
-def logo(): # Module Interface
+def logo(): 
     """Display the game's colorful logo"""
     print()
     print(util.red('888888888               '), util.white('888888888                '), util.cyan('888888888                 '))
@@ -15,7 +15,7 @@ def logo(): # Module Interface
     print(util.green("\nWOULD YOU LIKE TO PLAY A GAME?\n"))
 
 
-def show(board): # Module Interface
+def show(board): 
     """
     Display the Tic-Tac-Toe board on the screen, in color
 
@@ -28,7 +28,7 @@ def show(board): # Module Interface
             util.color(board[6]), util.color(board[7]), util.color(board[8])))
 
 
-def get_human_move(board, letter): # Module Interface
+def get_human_move(board, letter): 
     """
     Ask a human which move to take, or whether they want to quit.
     Perform rudimentary input validation, repeating the prompt until a valid
@@ -55,7 +55,7 @@ def get_human_move(board, letter): # Module Interface
                 return choice
 
 
-def player_select(): # Module Interface 
+def player_select():
     while True:
         print("0)", util.red("X"), util.green("CPU  "), "vs.", util.cyan("O"), util.green("CPU"))
         print("1)", util.red("X"), util.white("Human"), "vs.", util.cyan("O"), util.green("CPU"))
@@ -72,7 +72,7 @@ def player_select(): # Module Interface
             print("\nInvalid selection!\n")
 
 
-def make_board(): # Module Interface
+def make_board(): 
     """
     A board is a 3-tuple of 3-tuples, where each tuple is one row
     """
